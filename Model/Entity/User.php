@@ -8,6 +8,7 @@ class User extends AbstractEntity
     private string $username;
     private string $email;
     private string $password;
+    private array $roles;
 
     /**
      * @return int
@@ -78,6 +79,24 @@ class User extends AbstractEntity
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
         return $this;
     }
 }
