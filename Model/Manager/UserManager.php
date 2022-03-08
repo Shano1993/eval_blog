@@ -9,6 +9,9 @@ class UserManager
 {
     public const TABLE = 'user';
 
+    /**
+     * @return array
+     */
     public static function getAll(): array
     {
         $users = [];
@@ -22,16 +25,31 @@ class UserManager
         return $users;
     }
 
+    /**
+     * @param array $data
+     * @return User
+     */
     private static function makeUser(array $data): User
     {
         $user = (new User())
             ->setId($data['id'])
-            ->setAge($data['age'])
-            ->setUsername($data['username'])
+            ->setFirstname($data['firstname'])
+            ->setLastname($data['lastname'])
             ->setEmail($data['email'])
             ->setPassword($data['password'])
+            ->setAge($data['age'])
             ;
 
         return $user->setRoles(RoleManager::getRolesByUser($user));
+    }
+
+    /**
+     * @param int $id
+     * @return User|null
+     */
+    public static function getUser(int $id): ?User
+    {
+        $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $request ? self::makeUser($request->fetch()) : null;
     }
 }

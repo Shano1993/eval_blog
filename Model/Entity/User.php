@@ -4,45 +4,46 @@ namespace App\Model\Entity;
 
 class User extends AbstractEntity
 {
-    private int $age;
-    private string $username;
+    private string $firstname;
+    private string $lastname;
     private string $email;
     private string $password;
+    private int $age;
     private array $roles;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getAge(): int
+    public function getFirstname(): string
     {
-        return $this->age;
+        return $this->firstname;
     }
 
     /**
-     * @param int $age
+     * @param string $firstname
      * @return User
      */
-    public function setAge(int $age): self
+    public function setFirstname(string $firstname): self
     {
-        $this->age = $age;
+        $this->firstname = $firstname;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getLastname(): string
     {
-        return $this->username;
+        return $this->lastname;
     }
 
     /**
-     * @param string $username
+     * @param string $lastname
      * @return User
      */
-    public function setUsername(string $username): self
+    public function setLastname(string $lastname): self
     {
-        $this->username = $username;
+        $this->lastname = $lastname;
         return $this;
     }
 
@@ -79,6 +80,24 @@ class User extends AbstractEntity
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge(): int
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param int $age
+     * @return User
+     */
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
         return $this;
     }
 
