@@ -15,7 +15,7 @@ class FormManager
             ':email' => $_POST['mail'],
             ':firstname' => $_POST['firstname'],
             ':lastname' => $_POST['lastname'],
-            ':password' => $_POST['password'],
+            ':password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
             ':age' => $_POST['age'],
         ]);
     }

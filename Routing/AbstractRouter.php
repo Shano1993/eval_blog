@@ -28,7 +28,7 @@ abstract class AbstractRouter
             }
             $arg = self::secured($_GET[$param]);
             settype($arg, $type);
-            $args = $arg;
+            $args[] = $arg;
         }
         $controller->$method(...$args);
     }

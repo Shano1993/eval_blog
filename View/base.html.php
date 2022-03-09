@@ -15,6 +15,7 @@
             <span class="clock"></span>
             <a href="" class="buttonNavBar">Faire un don<i class="fas fa-euro-sign"></i></a>
             <a href="" class="buttonNavBar">Voter pour le serveur !</a>
+            <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
         </div>
         <div id="user">
             <a href="/index.php?c=form" class="linkUser">Inscription</a>
