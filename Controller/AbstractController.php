@@ -21,9 +21,26 @@ abstract class AbstractController
      */
     public function getField(string $field, $default = null)
     {
-        if (isset($_POST[$field])) {
+        if (!isset($_POST[$field])) {
             return (null === $default) ? '' : $default;
         }
         return $_POST[$field];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFormSubmitted(): bool
+    {
+        return isset($_POST['save']);
+    }
+
+    /**
+     * @param string $param
+     * @return string
+     */
+    public function sanitizeString(string $param): string
+    {
+        return filter_var($param, FILTER_SANITIZE_STRING);
     }
 }
