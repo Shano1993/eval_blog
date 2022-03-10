@@ -18,6 +18,9 @@ class UserRouter extends AbstractRouter
            case 'delete-user':
                self::routeWithParams($controller, 'deleteUser', ['id' => 'int']);
                break;
+           case 'register':
+               $controller->register();
+               break;
            default:
                (new ErrorController())->error404($action);
        }

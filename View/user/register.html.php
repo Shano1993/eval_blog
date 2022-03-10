@@ -10,7 +10,7 @@
 <h1>Formulaire d'inscription</h1>
 
 <div class="box">
-    <form action="/index.php?c=form&a=confirm-register" method="post">
+    <form action="/index.php?c=user&a=register" method="post">
         <div class="input-container">
             <input type="text" name="firstname" id="id-firstname">
             <label for="id-firstname">Votre prénom</label>
@@ -27,12 +27,12 @@
         </div>
 
         <div class="input-container">
-            <input type="password" name="passwordRepeat" id="id-passwordRepeat">
+            <input type="password" name="password-repeat" id="id-passwordRepeat">
             <label for="id-passwordRepeat">Répéter le mot de passe</label>
         </div>
 
         <div class="input-container">
-            <input type="email" name="mail" id="id-mail">
+            <input type="email" name="email" id="id-mail">
             <label for="id-mail">Adresse Email</label>
         </div>
 

@@ -13,4 +13,17 @@ abstract class AbstractController
         $html = ob_get_clean();
         require __DIR__ . '/../View/base.html.php';
     }
+
+    /**
+     * @param string $field
+     * @param null $default
+     * @return mixed|string&
+     */
+    public function getField(string $field, $default = null)
+    {
+        if (isset($_POST[$field])) {
+            return (null === $default) ? '' : $default;
+        }
+        return $_POST[$field];
+    }
 }

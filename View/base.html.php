@@ -18,7 +18,7 @@
             <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
         </div>
         <div id="user">
-            <a href="/index.php?c=form" class="linkUser">Inscription</a>
+            <a href="/index.php?c=user&a=register" class="linkUser">Inscription</a>
             <a href="" class="linkUser">Connexion</a>
         </div>
     </div>
@@ -46,7 +46,9 @@
 </header>
 
 <main>
-    <?= $html ?>
+    <div class="middle"></div>
+    <div class="container"><?= $html ?></div>
+    <div class="middle"></div>
 </main>
 
 <script src="https://kit.fontawesome.com/84aafb4cd1.js" crossorigin="anonymous"></script>

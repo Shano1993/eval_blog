@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Entity\User;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -13,6 +14,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function register()
+    {
+        $this->render('user/register');
+    }
+
+    /**
+     * @param int $id
+     */
     public function deleteUser(int $id)
     {
         if (UserManager::userExist($id)) {

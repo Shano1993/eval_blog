@@ -13,16 +13,13 @@ require __DIR__ . '/Model/Manager/UserManager.php';
 require __DIR__ . '/Model/Manager/RoleManager.php';
 require __DIR__ . '/Model/Manager/ArticleManager.php';
 require __DIR__ . '/Model/Manager/CommentManager.php';
-require __DIR__ . '/Model/Manager/FormManager.php';
 
 require __DIR__ . '/Controller/ErrorController.php';
 require __DIR__ . '/Controller/AbstractController.php';
 require __DIR__ . '/Controller/HomeController.php';
-require __DIR__ . '/Controller/FormController.php';
 require __DIR__ . '/Controller/UserController.php';
 
 require __DIR__ . '/Routing/AbstractRouter.php';
 require __DIR__ . '/Routing/HomeRouter.php';
-require __DIR__ . '/Routing/FormRouter.php';
 require __DIR__ . '/Routing/UserRouter.php';
 
