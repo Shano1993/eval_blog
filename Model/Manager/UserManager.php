@@ -86,6 +86,10 @@ class UserManager
         return false;
     }
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public static function addUser(User &$user): bool
     {
         $stmt = DB::getPDO()->prepare("

@@ -128,4 +128,9 @@ class UserController extends AbstractController
             $this->render('user/login');
         }
     }
+
+    public function profil()
+    {
+        $this->render('user/profil');
+    }
 }

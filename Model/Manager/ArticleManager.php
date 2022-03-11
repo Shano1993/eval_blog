@@ -30,4 +30,25 @@ class ArticleManager
         }
         return $articles;
     }
+
+    /**
+     * @param Article $article
+     * @return bool
+     */
+    public static function addNewArticle(Article &$article):bool
+    {
+        $stmt = DB::getPDO()->prepare("
+            INSERT INTO " . self::TABLE . " (title, content, date_add, date_update, user_fk) VALUES (:title, :content, :date_add, :date_update, :user_fk)
+        ");
+
+        $stmt->bindValue(':title', $article->getTitle());
+        $stmt->bindValue(':content', $article->getContent());
+        $stmt->bindValue(':date_add', $article->getDateAdd());
+        $stmt->bindValue(':date_update', $article->getDateUpdate());
+        $stmt->bindValue(':user_fk', $article->getAuthor());
+
+        $result = $stmt->execute();
+        $article->setId(DB::getPDO()->lastInsertId());
+        return $result;
+    }
 }

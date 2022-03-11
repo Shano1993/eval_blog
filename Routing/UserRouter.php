@@ -27,6 +27,9 @@ class UserRouter extends AbstractRouter
            case 'login':
                $controller->login();
                break;
+           case 'profil':
+               $controller->profil();
+               break;
            default:
                (new ErrorController())->error404($action);
        }
