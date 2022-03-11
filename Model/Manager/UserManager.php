@@ -110,4 +110,15 @@ class UserManager
         }
         return $result && $resultRole;
     }
+
+    /**
+     * @param string $email
+     * @return User|null
+     */
+    public static function getUserByMail(string $email): ?User
+    {
+        $stmt = DB::getPDO()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email);
+        return $stmt->execute() ? self::makeUser($stmt->fetch()) : null;
+    }
 }

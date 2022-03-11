@@ -14,12 +14,22 @@
             <span id="date"></span>
             <span class="clock"></span>
             <a href="" class="buttonNavBar">Faire un don<i class="fas fa-euro-sign"></i></a>
-            <a href="" class="buttonNavBar">Voter pour le serveur !</a>
-            <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
+            <a href="" class="buttonNavBar">Voter pour le serveur !</a> <?php
+            if (UserController::adminConnected()) { ?>
+                <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a> <?php
+            } ?>
+
         </div>
-        <div id="user">
-            <a href="/index.php?c=user&a=register" class="linkUser">Inscription</a>
-            <a href="" class="linkUser">Connexion</a>
+        <div id="user"> <?php
+            if (!UserController::userConnected()) { ?>
+                <a href="/index.php?c=user&a=register" class="linkUser">Inscription</a>
+                <a href="/index.php?c=user&a=login" class="linkUser">Connexion</a> <?php
+            }
+            else { ?>
+                <a href="/index.php?c=user&a=profile" class="linkUser">Profil</a>
+                <a href="/index.php?c=user&a=logout" class="linkUser">Deconnexion</a> <?php
+            }
+            ?>
         </div>
     </div>
 
@@ -50,6 +60,22 @@
     <div class="container"><?= $html ?></div>
     <div class="middle"></div>
 </main>
+<?php
+if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+$errors = $_SESSION['errors'];
+unset($_SESSION['errors']);
+foreach ($errors as $error) { ?>
+<div><?= $error ?></div> <?php
+    }
+}
+
+if (isset($_SESSION['success'])) {
+    $message = $_SESSION['success'];
+    unset($_SESSION['success']); ?>
+<div><?= $message ?></div> <?php
+}
+?>
+
 
 <script src="https://kit.fontawesome.com/84aafb4cd1.js" crossorigin="anonymous"></script>
 <script src="/assets/js/app.js"></script>

@@ -2,8 +2,8 @@
 
 namespace App\Routing;
 
-use App\Controller\UserController;
 use ErrorController;
+use UserController;
 
 class UserRouter extends AbstractRouter
 {
@@ -20,6 +20,12 @@ class UserRouter extends AbstractRouter
                break;
            case 'register':
                $controller->register();
+               break;
+           case 'logout':
+               $controller->logout();
+               break;
+           case 'login':
+               $controller->login();
                break;
            default:
                (new ErrorController())->error404($action);

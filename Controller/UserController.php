@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Controller;
-
+use App\Controller\AbstractController;
 use App\Model\Entity\User;
 use App\Model\Manager\RoleManager;
 use App\Model\Manager\UserManager;
@@ -20,6 +19,8 @@ class UserController extends AbstractController
      */
     public function register()
     {
+        self::redirectIfConnected();
+
         if ($this->isFormSubmitted()) {
             $errors = [];
             $firstname = $this->sanitizeString($this->getField('firstname'));
@@ -88,5 +89,42 @@ class UserController extends AbstractController
             $deleted = UserManager::deleteUser($user);
         }
         $this->index();
+    }
+
+    public function logout(): void
+    {
+        if (self::userConnected()) {
+            $_SESSION['user']  = null;
+            $_SESSION['errors'] = null;
+            $_SESSION['success'] = null;
+            session_destroy();
+        }
+        $this->render('home/index');
+    }
+
+    public function login()
+    {
+        self::redirectIfConnected();
+        if ($this->isFormSubmitted()) {
+            $errorMessage = "L'adresse email ou le mot de passe est incorrect";
+            $email = $this->sanitizeString($this->getField('email'));
+            $password = $this->getField('password');
+
+            $user = UserManager::getUserByMail($email);
+            if (null === $user) {
+                $_SESSION['errors'][] = $errorMessage;
+            }
+            else {
+                if (password_verify($password, $user->getPassword())) {
+                    $user->setPassword('');
+                    $_SESSION['user'] = $user;
+                    $this->redirectIfConnected();
+                }
+                else {
+                    $_SESSION['errors'][] = $errorMessage;
+                }
+            }
+        }
+        $this->render('user/login');
     }
 }

@@ -36,6 +36,39 @@ abstract class AbstractController
     }
 
     /**
+     * @return bool
+     */
+    public static function userConnected(): bool
+    {
+        return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
+    }
+
+    /**
+     *
+     */
+    public function redirectIfConnected(): void
+    {
+        if (self::userConnected()) {
+            $this->render('home/index');
+        }
+    }
+
+    public function redirectIfNotConnected(): void
+    {
+        if (!self::userConnected()) {
+            $this->render('home/index');
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public static function adminConnected(): bool
+    {
+        return isset($_SESSION['admin']) && null !== ($_SESSION['admin'])->getId();
+    }
+
+    /**
      * @param string $param
      * @return string
      */
