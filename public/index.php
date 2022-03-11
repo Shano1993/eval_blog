@@ -5,6 +5,7 @@ use App\Routing\HomeRouter;
 use App\Routing\UserRouter;
 
 require __DIR__ . '/../includes.php';
+session_start();
 
 $page = isset($_GET['c']) ? AbstractRouter::secured($_GET['c']) : 'home';
 $method = isset($_GET['a']) ? AbstractRouter::secured($_GET['a']) : 'index';

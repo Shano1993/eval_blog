@@ -8,6 +8,7 @@ use App\Model\Entity\User;
 class UserManager
 {
     public const TABLE = 'user';
+    public const TABLE_USER_ROLE = 'user_role';
 
     /**
      * @return array
@@ -64,6 +65,16 @@ class UserManager
     }
 
     /**
+     * @param string $email
+     * @return bool
+     */
+    public static function mailUserExist(string $email): bool
+    {
+        $result = DB::getPDO()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = '".$email."'");
+        return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+    /**
      * @param User $user
      * @return bool
      */
@@ -73,5 +84,30 @@ class UserManager
             return DB::getPDO()->exec("DELETE FROM " . self::TABLE . " WHERE id = {$user->getId()}");
         }
         return false;
+    }
+
+    public static function addUser(User &$user): bool
+    {
+        $stmt = DB::getPDO()->prepare("
+            INSERT INTO user (firstname, lastname, email, password, age) 
+            VALUES (:firstname, :lastname, :email, :password, :age)
+        ");
+
+        $stmt->bindValue(':firstname', $user->getFirstname());
+        $stmt->bindValue(':lastname', $user->getLastname());
+        $stmt->bindValue(':email', $user->getEmail());
+        $stmt->bindValue(':password', $user->getPassword());
+        $stmt->bindValue(':age', $user->getAge());
+
+        $result = $stmt->execute();
+        $user->setId(DB::getPDO()->lastInsertId());
+        if ($result) {
+            $role = RoleManager::getRoleByName(RoleManager::ROLE_USER);
+            $resultRole = DB::getPDO()->exec("
+                INSERT INTO " . self::TABLE_USER_ROLE . " (user_fk, role_fk)
+                VALUES (".$user->getId().", ".$role->getId().")
+            ");
+        }
+        return $result && $resultRole;
     }
 }

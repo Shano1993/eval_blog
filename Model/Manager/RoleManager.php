@@ -8,8 +8,10 @@ use App\Model\Entity\User;
 
 class RoleManager
 {
-
     public const TABLE = 'role';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_MODERATOR = 'moderator';
+    public const ROLE_USER = 'user';
 
     /**
      * @return array
@@ -49,5 +51,19 @@ class RoleManager
             }
         }
         return $roles;
+    }
+
+    /**
+     * @param string $roleName
+     * @return Role
+     */
+    public static function getRoleByName(string $roleName): Role{
+        $role = new Role();
+        $request = DB::getPDO()->query("SELECT * FROM role WHERE role_name = '".$roleName."'");
+        if ($request && $roleData = $request->fetch()) {
+            $role->setId($roleData['id']);
+            $role->setRoleName($roleData['role_name']);
+        }
+        return $role;
     }
 }

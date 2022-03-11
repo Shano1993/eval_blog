@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Entity\User;
+use App\Model\Manager\RoleManager;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -14,6 +15,9 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     *
+     */
     public function register()
     {
         if ($this->isFormSubmitted()) {
@@ -43,9 +47,33 @@ class UserController extends AbstractController
             if ($age <= 12 || $age >= 100) {
                 $errors[] = "Vous n'avez pas l'âge recquis pour vous inscrire";
             }
-            echo "<pre>";
-            var_dump($errors);
-            echo "</pre>";
+
+            if (count($errors) > 0) {
+                $_SESSION['errors'] = $errors;
+            } else {
+                $user = new User();
+                $role = RoleManager::getRoleByName('user');
+                $user
+                    ->setFirstname($firstname)
+                    ->setLastname($lastname)
+                    ->setEmail($email)
+                    ->setPassword(password_hash($password, PASSWORD_DEFAULT))
+                    ->setAge($age)
+                    ->setRoles([$role]);
+
+                if (!UserManager::mailUserExist($user->getEmail())) {
+                    UserManager::addUser($user);
+                    if (null !== $user->getId()) {
+                        $_SESSION['success'] = "Inscription réussie, votre compte est actif";
+                        $user->setPassword('');
+                        $_SESSION['user'] = $user;
+                    } else {
+                        $_SESSION['errors'] = "Impossible de vous enregistrer";
+                    }
+                } else {
+                    $_SESSION['errors'] = "L'adresse email est déjà utilisée !";
+                }
+            }
         }
         $this->render('user/register');
     }
