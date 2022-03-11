@@ -104,7 +104,6 @@ class UserController extends AbstractController
 
     public function login()
     {
-        self::redirectIfConnected();
         if ($this->isFormSubmitted()) {
             $errorMessage = "L'adresse email ou le mot de passe est incorrect";
             $email = $this->sanitizeString($this->getField('email'));
@@ -125,6 +124,8 @@ class UserController extends AbstractController
                 }
             }
         }
-        $this->render('user/login');
+        else {
+            $this->render('user/login');
+        }
     }
 }

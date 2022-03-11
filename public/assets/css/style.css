@@ -107,14 +107,21 @@ span {
     padding-right: 1rem;
 }
 
-.linkUser {
+.linkUser, .profil {
     font-size: 1.7rem;
     text-decoration-line: none;
     padding: 0.5rem 1rem;
     margin-right: 1.5rem;
     color: white;
-    border: 0.1rem solid rgba(255, 255, 255, 0.46);
     border-radius: 0.5rem;
+}
+
+.linkUser:hover, .profil:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.user {
+    margin-right: 1rem;
 }
 
 .box {

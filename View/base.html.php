@@ -14,11 +14,8 @@
             <span id="date"></span>
             <span class="clock"></span>
             <a href="" class="buttonNavBar">Faire un don<i class="fas fa-euro-sign"></i></a>
-            <a href="" class="buttonNavBar">Voter pour le serveur !</a> <?php
-            if (UserController::adminConnected()) { ?>
-                <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a> <?php
-            } ?>
-
+            <a href="" class="buttonNavBar">Voter pour le serveur !</a>
+                <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
         </div>
         <div id="user"> <?php
             if (!UserController::userConnected()) { ?>
@@ -26,7 +23,7 @@
                 <a href="/index.php?c=user&a=login" class="linkUser">Connexion</a> <?php
             }
             else { ?>
-                <a href="/index.php?c=user&a=profile" class="linkUser">Profil</a>
+                <a href="/index.php?c=user&a=profile" class="profil"><i class="fas fa-address-book user"></i><?= $_SESSION['user']->getFirstname() ?></a>
                 <a href="/index.php?c=user&a=logout" class="linkUser">Deconnexion</a> <?php
             }
             ?>

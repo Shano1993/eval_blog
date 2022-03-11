@@ -53,21 +53,6 @@ abstract class AbstractController
         }
     }
 
-    public function redirectIfNotConnected(): void
-    {
-        if (!self::userConnected()) {
-            $this->render('home/index');
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public static function adminConnected(): bool
-    {
-        return isset($_SESSION['admin']) && null !== ($_SESSION['admin'])->getId();
-    }
-
     /**
      * @param string $param
      * @return string

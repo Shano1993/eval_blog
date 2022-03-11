@@ -1,1 +1,1 @@
-<h1>Bienvenue sur ArkMonster</h1>
+<h1>ArkMonster</h1>
