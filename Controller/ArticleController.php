@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Entity\Article;
+use App\Model\Manager\ArticleManager;
 use MongoDB\BSON\Timestamp;
 
 class ArticleController extends AbstractController
@@ -10,7 +11,7 @@ class ArticleController extends AbstractController
 
     public function index()
     {
-        // TODO: Implement index() method.
+        $this->render('article/show-article');
     }
 
     public function addArticle()
@@ -26,10 +27,15 @@ class ArticleController extends AbstractController
             $article
                 ->setTitle($title)
                 ->setContent($content)
-                ->setDateAdd()
-                ->setDateUpdate()
                 ->setAuthor($user)
             ;
+
+            if (ArticleManager::addNewArticle($article)) {
+                $this->render('article/show-article', [
+                    'article' => $article
+                ]);
+            }
         }
+        $this->render('article/add-article');
     }
 }
