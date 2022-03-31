@@ -279,6 +279,7 @@ main {
     border: 0.1rem solid black;
     margin: 2rem;
     padding: 1.5rem;
+    border-radius: 0.5rem;
 }
 
 p {
@@ -291,6 +292,10 @@ p {
     font-size: 1.2rem;
     font-weight: normal;
     color: #1333c5;
+}
+
+.comment {
+    border: 0.1rem solid black;
 }
 
 

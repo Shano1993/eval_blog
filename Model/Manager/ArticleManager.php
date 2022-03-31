@@ -4,6 +4,7 @@ namespace App\Model\Manager;
 
 use App\Model\DB;
 use App\Model\Entity\Article;
+use App\Model\Entity\Comment;
 use DateTime;
 
 class ArticleManager
@@ -15,7 +16,7 @@ class ArticleManager
      */
     public static function getAll(): array
     {
-        $articles= [];
+        $articles = [];
         $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE);
 
         if ($request) {
@@ -36,14 +37,15 @@ class ArticleManager
             ->setId($data['id'])
             ->setTitle($data['title'])
             ->setContent($data['content'])
-            ->setAuthor(UserManager::getUser($data['user_fk']));
+            ->setAuthor(UserManager::getUser($data['user_fk']))
+            ;
     }
 
     /**
      * @param Article $article
      * @return bool
      */
-    public static function addNewArticle(Article &$article):bool
+    public static function addNewArticle(Article &$article): bool
     {
         $stmt = DB::getPDO()->prepare("
             INSERT INTO " . self::TABLE . " (title, content, user_fk) VALUES (:title, :content, :author)
@@ -56,5 +58,15 @@ class ArticleManager
         $result = $stmt->execute();
         $article->setId(DB::getPDO()->lastInsertId());
         return $result;
+    }
+
+    /**
+     * @param int $id
+     * @return Article|null
+     */
+    public static function getArticle(int $id): ?Article
+    {
+        $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $request ? self::makeArticle($request->fetch()) : null;
     }
 }

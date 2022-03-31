@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Model\Entity\Article;
+use App\Model\Entity\Comment;
 use App\Model\Manager\ArticleManager;
+use App\Model\Manager\CommentManager;
 use MongoDB\BSON\Timestamp;
 
 class ArticleController extends AbstractController
