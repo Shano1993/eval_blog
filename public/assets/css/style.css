@@ -134,71 +134,54 @@ span {
     margin-right: 1rem;
 }
 
-.box {
+.formRegister {
     display: flex;
-    width: 50%;
-    margin: 5rem auto;
-    background-color: rgba(0, 0, 0, 0.89);
-    border-radius: 0.3rem;
-    padding: 5rem 10rem;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input-container {
-    position:relative;
-    margin-bottom: 2.5rem;
+    border-bottom: 0.1rem solid rgba(12, 37, 201, 0.27);
 }
 
-.input-container > label {
-    position:absolute;
-    top: 0;
-    left: 0;
-    color: #fff;
+input {
+    margin: 2rem;
+    padding: 0.5rem;
+    border-bottom: 0.1rem solid red;
 }
 
-.input-container input {
-    border: 0;
-    border-bottom: 0.1rem solid #555;
-    background: transparent;
-    width: 100%;
-    padding: 0.8rem 0 0.5rem 0;
-    font-size: 1.6rem;
-    color: #fff;
-}
-
-.input-container input:focus {
-    border: none;
-    outline: none;
-    border-bottom: 0.1rem solid #1333c5;
-}
-
-.btn {
-    color: #fff;
-    background-color: #1333c5;
-    outline: none;
-    border: 0;
-    padding: 1rem 2rem;
-    border-radius: 0.3rem;
+input[type=submit] {
+    padding: 1rem;
+    border-radius: 0.6rem;
     cursor: pointer;
-    position: relative;
 }
 
-.input-container input:focus ~ label,
-.input-container input:valid ~ label {
-    top:-12px;
+input[type=submit]:hover {
+    transform: scale(0.9);
+}
+
+.back {
+    border: 0.1rem solid indianred;
+    padding: 0.5rem;
     font-size: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.61);
+    color: black;
+}
+
+.back:hover {
+    transform: scale(0.9);
 }
 
 #back {
-    text-decoration-line: none;
-    font-size: 1.2rem;
-    border: 0.1rem solid red;
-    background-color: red;
-    color: white;
-    margin: 2rem;
-    padding: 1rem 2rem;
-    text-align: center;
-    border-radius: 0.3rem;
-    font-weight: bold;
+    color: black;
 }
 
 table {
@@ -252,7 +235,7 @@ main {
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.24);
 }
 
-.delete {
+.deleteAccount {
     color: red;
     margin-top: 5rem;
     padding: 1rem;
@@ -261,7 +244,7 @@ main {
     font-weight: bold;
 }
 
-.delete:hover {
+.deleteAccount:hover {
     transform: scale(0.9);
     background-color: rgba(255, 255, 255, 0.47);
 }
@@ -296,6 +279,92 @@ p {
 
 .comment {
     border: 0.1rem solid black;
+}
+
+.error {
+    font-size: 2rem;
+    background-color: indianred;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.success {
+    font-size: 2rem;
+    background-color: forestgreen;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.commentary {
+    width: 50%;
+}
+
+.addCommentary {
+    padding: 0.3rem;
+}
+
+/*
+    Responsive
+ */
+
+@media screen and (max-width: 1500px) {
+    #bar > li {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 1330px) {
+    #head {
+        flex-direction: column;
+    }
+
+    #user {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 2rem;
+    }
+
+    #info {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    #bar > li {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    .viewUser, .addArticle, .middle {
+        display: none;
+    }
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    #bar {
+        flex-direction: column;
+    }
+    #bar > li {
+        width: 100%;
+    }
+    .buttonNavBar {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #user {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+    #info {
+        display: none;
+    }
 }
 
 

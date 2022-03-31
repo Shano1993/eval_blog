@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Model\Manager\RoleManager;
+use App\Model\Manager\UserManager;
+
 abstract class AbstractController
 {
     abstract public function index();

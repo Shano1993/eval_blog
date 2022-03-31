@@ -7,7 +7,6 @@ use UserController;
 
 class UserRouter extends AbstractRouter
 {
-
     public static function route(?string $action = null)
     {
        $controller = new UserController();

@@ -43,4 +43,13 @@ class ArticleController extends AbstractController
         }
         $this->render('article/add-article');
     }
+
+    public function deleteArticle(int $id)
+    {
+        if (ArticleManager::articleExist($id)) {
+            $article = ArticleManager::getArticle($id);
+            $deleted = ArticleManager::deleteArticle($article);
+        }
+        $this->index();
+    }
 }

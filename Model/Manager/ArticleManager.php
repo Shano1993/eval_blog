@@ -69,4 +69,26 @@ class ArticleManager
         $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
         return $request ? self::makeArticle($request->fetch()) : null;
     }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public static function articleExist(int $id): bool
+    {
+        $result = DB::getPDO()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        return $result ? $result->fetch()['cnt'] : 0;
+    }
+
+    /**
+     * @param Article $article
+     * @return bool
+     */
+    public static function deleteArticle(Article $article): bool
+    {
+        if (self::articleExist($article->getId())) {
+            return DB::getPDO()->exec("DELETE FROM " . self::TABLE . " WHERE id = {$article->getId()}");
+        }
+        return false;
+    }
 }

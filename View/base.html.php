@@ -13,8 +13,8 @@
         <div id="info">
             <span id="date"></span>
             <span class="clock"></span>
-            <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
-            <a href="/index.php?c=article&a=add-article" class="buttonNavBar">Ajouter un article</a>
+            <a href="/index.php?c=user" class="buttonNavBar viewUser">Voir les utilisateurs</a>
+            <a href="/index.php?c=article&a=add-article" class="buttonNavBar addArticle">Ajouter un article</a>
         </div>
         <div id="user"> <?php
             if (!UserController::userConnected()) { ?>
@@ -51,28 +51,29 @@
     </div>
 </header>
 
-<main>
-    <div class="middle"></div>
-    <div class="container"><?= $html ?></div>
-    <div class="middle"></div>
-</main>
 <?php
 if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-$errors = $_SESSION['errors'];
-unset($_SESSION['errors']);
-foreach ($errors as $error) { ?>
-<div><?= $error ?></div> <?php
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+    foreach ($errors as $error) { ?>
+        <div class="error"><?= $error ?></div> <?php
     }
 }
 
 if (isset($_SESSION['success'])) {
     $message = $_SESSION['success'];
     unset($_SESSION['success']); ?>
-<div><?= $message ?></div> <?php
+    <div class="success"><?= $message ?></div> <?php
 }
 ?>
 
-<script src="https://kit.fontawesome.com/84aafb4cd1.js" crossorigin="anonymous"></script>
-<script src="/assets/js/app.js"></script>
+<main>
+    <div class="middle"></div>
+    <div class="container"><?= $html ?></div>
+    <div class="middle"></div>
+</main>
+
+    <script src="https://kit.fontawesome.com/84aafb4cd1.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

@@ -17,6 +17,9 @@ class ArticleRouter extends AbstractRouter
             case 'add-article':
                 $controller->addArticle();
                 break;
+            case 'delete-article':
+                self::routeWithParams($controller, 'deleteArticle', ['id' => 'int']);
+                break;
             default:
                 (new ErrorController())->error404($action);
         }

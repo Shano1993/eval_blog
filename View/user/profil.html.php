@@ -22,6 +22,6 @@
         <div><a href="" class="edit">Editer</a></div>
     </div>
     <div class="line">
-        <a href="" class="delete">Supprimer votre compte</a>
+        <a href="" class="deleteAccount">Supprimer votre compte</a>
     </div>
 </div>
