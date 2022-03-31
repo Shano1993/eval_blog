@@ -6,10 +6,13 @@ use App\Model\Entity\Article; ?>
 
 foreach ($data['show_article'] as $article) {
     /* @var Article $article */ ?>
-    <div class="article">
-        <span><a class= "edit" href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a></span>
-        <br>
-        <span><a class = "edit" href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Editer</a></span>
+    <div class="article"> <?php
+        if (UserController::adminConnected()) { ?>
+            <span><a class= "edit" href="/index.php?c=article&a=delete-article&id=<?= $article->getId() ?>">Supprimer</a></span>
+            <br>
+            <span><a class = "edit" href="/index.php?c=article&a=edit-article&id=<?= $article->getId() ?>">Editer</a></span> <?php
+        } ?>
+
         <h2><?= $article->getTitle() ?></h2>
         <div>
             <p><?= $article->getContent() ?></p>

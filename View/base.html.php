@@ -12,9 +12,11 @@
     <div id="head">
         <div id="info">
             <span id="date"></span>
-            <span class="clock"></span>
-            <a href="/index.php?c=user" class="buttonNavBar viewUser">Voir les utilisateurs</a>
-            <a href="/index.php?c=article&a=add-article" class="buttonNavBar addArticle">Ajouter un article</a>
+            <span class="clock"></span> <?php
+            if (UserController::adminConnected()) { ?>
+                <a href="/index.php?c=user" class="buttonNavBar viewUser">Voir les utilisateurs</a>
+                <a href="/index.php?c=article&a=add-article" class="buttonNavBar addArticle">Ajouter un article</a> <?php
+            } ?>
         </div>
         <div id="user"> <?php
             if (!UserController::userConnected()) { ?>
@@ -24,8 +26,7 @@
             else { ?>
                 <a href="/index.php?c=user&a=profil" class="profil"><i class="fas fa-address-book user"></i><?= ($_SESSION['user'])->getFirstname() ?></a>
                 <a href="/index.php?c=user&a=logout" class="linkUser">Deconnexion</a> <?php
-            }
-            ?>
+            } ?>
         </div>
     </div>
 
@@ -64,8 +65,7 @@ if (isset($_SESSION['success'])) {
     $message = $_SESSION['success'];
     unset($_SESSION['success']); ?>
     <div class="success"><?= $message ?></div> <?php
-}
-?>
+} ?>
 
 <main>
     <div class="middle"></div>

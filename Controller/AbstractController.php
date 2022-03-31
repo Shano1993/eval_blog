@@ -46,6 +46,11 @@ abstract class AbstractController
         return isset($_SESSION['user']) && null !== ($_SESSION['user'])->getId();
     }
 
+    public static function adminConnected(): bool
+    {
+        return false;
+    }
+
     /**
      *
      */

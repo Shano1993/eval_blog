@@ -52,4 +52,13 @@ class ArticleController extends AbstractController
         }
         $this->index();
     }
+
+    public function editArticle(int $id)
+    {
+        if (ArticleManager::articleExist($id)) {
+            $article = ArticleManager::getArticle($id);
+            $edit = ArticleManager::editArticle($article);
+        }
+        $this->index();
+    }
 }
