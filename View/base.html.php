@@ -13,9 +13,8 @@
         <div id="info">
             <span id="date"></span>
             <span class="clock"></span>
-            <a href="" class="buttonNavBar">Faire un don<i class="fas fa-euro-sign"></i></a>
-            <a href="" class="buttonNavBar">Voter pour le serveur !</a>
-                <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
+            <a href="/index.php?c=user" class="buttonNavBar">Voir les utilisateurs</a>
+            <a href="/index.php?c=article&a=add-article" class="buttonNavBar">Ajouter un article</a>
         </div>
         <div id="user"> <?php
             if (!UserController::userConnected()) { ?>
@@ -40,7 +39,7 @@
                 <a href="/index.php?c=home" class="buttonNavBar"><i class="fas fa-home"></i>Acceuil</a>
             </li>
             <li>
-                <a href="" class="buttonNavBar"><i class="fas fa-server"></i>Nos Serveurs</a>
+                <a href="/index.php?c=article" class="buttonNavBar"><i class="fas fa-server"></i>Articles</a>
             </li>
             <li>
                 <a href="https://discord.gg/PFh2YzMvyF" class="buttonNavBar"><i class="fab fa-discord"></i>Discord</a>
@@ -72,7 +71,6 @@ if (isset($_SESSION['success'])) {
 <div><?= $message ?></div> <?php
 }
 ?>
-
 
 <script src="https://kit.fontawesome.com/84aafb4cd1.js" crossorigin="anonymous"></script>
 <script src="/assets/js/app.js"></script>

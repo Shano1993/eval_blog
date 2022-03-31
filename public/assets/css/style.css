@@ -20,6 +20,12 @@ h1 {
     padding: 0.5rem;
 }
 
+h2 {
+    color: rgba(0, 0, 0, 0.76);
+    font-size: 3rem;
+    text-decoration-line: underline;
+}
+
 a {
     text-decoration-line: none;
 }
@@ -269,5 +275,22 @@ main {
     text-decoration-line: underline;
 }
 
+.article {
+    border: 0.1rem solid black;
+    margin: 2rem;
+    padding: 1.5rem;
+}
+
+p {
+    font-size: 1.8rem;
+    margin: 1rem;
+    color: black;
+}
+
+.author {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #1333c5;
+}
 
 

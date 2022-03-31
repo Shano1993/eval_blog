@@ -9,26 +9,34 @@ use DateTime;
 class ArticleManager
 {
     public const TABLE = 'article';
-    public function getAll(): array
-    {
-        $articles = [];
-        $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE);
-        if ($request) {
-            $userManager = new UserManager();
-            $format = 'Y-m-d H:i:s';
 
-            foreach ($request->fetchAll() as $articleData) {
-                $articles[] = (new Article())
-                    ->setId($articleData['id'])
-                    ->setTitle($articleData['title'])
-                    ->setContent($articleData['content'])
-                    ->setDateAdd(DateTime::createFromFormat($format, $articleData['date_add']))
-                    ->setDateUpdate(DateTime::createFromFormat($format, $articleData['date_update']))
-                    ->setAuthor(UserManager::getUser($articleData['user_fk']))
-                    ;
+    /**
+     * @return array
+     */
+    public static function getAll(): array
+    {
+        $articles= [];
+        $request = DB::getPDO()->query("SELECT * FROM " . self::TABLE);
+
+        if ($request) {
+            foreach ($request->fetchAll() as $data) {
+                $articles[] = self::makeArticle($data);
             }
         }
         return $articles;
+    }
+
+    /**
+     * @param array $data
+     * @return Article
+     */
+    private static function makeArticle(array $data): Article
+    {
+        return (new Article())
+            ->setId($data['id'])
+            ->setTitle($data['title'])
+            ->setContent($data['content'])
+            ->setAuthor(UserManager::getUser($data['user_fk']));
     }
 
     /**
@@ -38,12 +46,12 @@ class ArticleManager
     public static function addNewArticle(Article &$article):bool
     {
         $stmt = DB::getPDO()->prepare("
-            INSERT INTO " . self::TABLE . " (title, content, user_fk) VALUES (:title, :content, :user_fk)
+            INSERT INTO " . self::TABLE . " (title, content, user_fk) VALUES (:title, :content, :author)
         ");
 
         $stmt->bindValue(':title', $article->getTitle());
         $stmt->bindValue(':content', $article->getContent());
-        $stmt->bindValue(':user_fk', $article->getAuthor());
+        $stmt->bindValue(':author', $article->getAuthor()->getId());
 
         $result = $stmt->execute();
         $article->setId(DB::getPDO()->lastInsertId());

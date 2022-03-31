@@ -10,7 +10,6 @@ class RoleManager
 {
     public const TABLE = 'role';
     public const ROLE_ADMIN = 'admin';
-    public const ROLE_MODERATOR = 'moderator';
     public const ROLE_USER = 'user';
 
     /**
@@ -57,7 +56,8 @@ class RoleManager
      * @param string $roleName
      * @return Role
      */
-    public static function getRoleByName(string $roleName): Role{
+    public static function getRoleByName(string $roleName): Role
+    {
         $role = new Role();
         $request = DB::getPDO()->query("SELECT * FROM role WHERE role_name = '".$roleName."'");
         if ($request && $roleData = $request->fetch()) {

@@ -11,7 +11,9 @@ class ArticleController extends AbstractController
 
     public function index()
     {
-        $this->render('article/show-article');
+        $this->render('article/show-article', [
+            'show_article' => ArticleManager::getAll()
+        ]);
     }
 
     public function addArticle()
@@ -31,9 +33,10 @@ class ArticleController extends AbstractController
             ;
 
             if (ArticleManager::addNewArticle($article)) {
-                $this->render('article/show-article', [
+                $this->render('home/index', [
                     'article' => $article
                 ]);
+                exit();
             }
         }
         $this->render('article/add-article');

@@ -71,12 +71,14 @@ class UserController extends AbstractController
                     } else {
                         $_SESSION['errors'] = "Impossible de vous enregistrer";
                     }
-                } else {
+                }
+                else {
                     $_SESSION['errors'] = "L'adresse email est déjà utilisée !";
                 }
             }
         }
         $this->render('user/register');
+        exit();
     }
 
     /**
