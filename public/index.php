@@ -2,6 +2,7 @@
 
 use App\Routing\AbstractRouter;
 use App\Routing\ArticleRouter;
+use App\Routing\CommentRouter;
 use App\Routing\HomeRouter;
 use App\Routing\UserRouter;
 
@@ -20,6 +21,9 @@ switch ($page) {
         break;
     case 'article':
         ArticleRouter::route($method);
+        break;
+    case 'comment':
+        CommentRouter::route($method);
         break;
     default:
         (new ErrorController())->error404($page);

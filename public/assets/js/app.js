@@ -1,4 +1,4 @@
-// current date
+// Current date
 const date = document.querySelector("#date");
 const dateToday = new Date();
 const options = {
@@ -8,7 +8,7 @@ const options = {
 };
 date.innerHTML = dateToday.toLocaleDateString("fr-FR", options);
 
-// actual hour
+// Actual hour
 function clock() {
     const time = new Date(),
         hours = time.getHours(),
@@ -23,3 +23,21 @@ function clock() {
     }
 }
 setInterval(clock, 0);
+
+// Interval remove message
+const success = document.querySelector('.success');
+const error = document.querySelector('.error');
+
+function getMessage(message) {
+    setTimeout(function () {
+        message.remove();
+    }, 5000)
+}
+
+getMessage(success);
+getMessage(error);
+
+
+
+
+

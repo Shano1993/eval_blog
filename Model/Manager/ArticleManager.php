@@ -91,9 +91,4 @@ class ArticleManager
         }
         return false;
     }
-
-    public static function editArticle(Article $article)
-    {
-
-    }
 }

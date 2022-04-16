@@ -19,9 +19,11 @@ require __DIR__ . '/Controller/AbstractController.php';
 require __DIR__ . '/Controller/HomeController.php';
 require __DIR__ . '/Controller/UserController.php';
 require __DIR__ . '/Controller/ArticleController.php';
+require __DIR__ . '/Controller/CommentController.php';
 
 require __DIR__ . '/Routing/AbstractRouter.php';
 require __DIR__ . '/Routing/HomeRouter.php';
 require __DIR__ . '/Routing/UserRouter.php';
 require __DIR__ . '/Routing/ArticleRouter.php';
+require __DIR__ . '/Routing/CommentRouter.php';
 

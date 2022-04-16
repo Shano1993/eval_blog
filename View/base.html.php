@@ -1,3 +1,18 @@
+<?php
+if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+    foreach ($errors as $error) { ?>
+        <div class="error"><?= $error ?></div> <?php
+    }
+}
+
+if (isset($_SESSION['success'])) {
+    $message = $_SESSION['success'];
+    unset($_SESSION['success']); ?>
+    <div class="success"><?= $message ?></div> <?php
+} ?>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -51,21 +66,6 @@
         </ul>
     </div>
 </header>
-
-<?php
-if (isset($_SESSION['errors']) && count($_SESSION['errors']) > 0) {
-    $errors = $_SESSION['errors'];
-    unset($_SESSION['errors']);
-    foreach ($errors as $error) { ?>
-        <div class="error"><?= $error ?></div> <?php
-    }
-}
-
-if (isset($_SESSION['success'])) {
-    $message = $_SESSION['success'];
-    unset($_SESSION['success']); ?>
-    <div class="success"><?= $message ?></div> <?php
-} ?>
 
 <main>
     <div class="middle"></div>

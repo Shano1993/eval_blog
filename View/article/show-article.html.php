@@ -1,6 +1,8 @@
 <?php
 
-use App\Model\Entity\Article; ?>
+use App\Controller\AbstractController;
+use App\Model\Entity\Article;
+use App\Model\Manager\CommentManager; ?>
 
 <h1>Liste des articles</h1> <?php
 
@@ -20,12 +22,19 @@ foreach ($data['show_article'] as $article) {
         <div>
             <span class="author">Publié par : <?= $article->getAuthor()->getLastname() . " " . $article->getAuthor()->getFirstname() ?></span>
         </div>
-        <div>
-            <p>Commentaires</p>
-            <form action="/index.php?c=article&a=add-comment" method="post">
-                <input type="text" name="comment" class="commentary" placeholder="Votre commentaire">
-                <input type="submit" class="addCommentary" name="save">
-            </form>
+        <div class="comment">
+            <p>Commentaires : </p>
+            <a class="addCommentary" href="/index.php?c=comment&a=add-comment&id=<?= $article->getId() ?>">Ajouter un commentaire</a>
+            <?php
+            foreach (CommentManager::getCommentByArticle($article) as $value) { ?>
+                    <div class="comments">
+                        <p class="commentary"><?= $value->getContent() ?></p>
+                        <p class="author"><?= $value->getAuthor()->getFirstname() ?></p>
+                    </div> <?php
+                if (AbstractController::adminConnected()) { ?>
+                    <a href="/index.php?c=comment&a=delete-comment&id=<?= $value->getId() ?>">Supprimer</a> <?php
+                }
+            } ?>
         </div>
     </div> <?php
 }

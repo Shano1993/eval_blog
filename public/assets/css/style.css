@@ -279,28 +279,38 @@ p {
 
 .comment {
     border: 0.1rem solid black;
+    background-color: #f9f9f9;
+    margin: 2rem;
+    padding: 2rem;
 }
 
 .error {
     font-size: 2rem;
     background-color: indianred;
     text-align: center;
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 .success {
     font-size: 2rem;
     background-color: forestgreen;
     text-align: center;
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 .commentary {
-    width: 50%;
+    color: royalblue;
 }
 
 .addCommentary {
-    padding: 0.3rem;
+    color: red;
+    font-size: 1.5rem;
+}
+
+.comments {
+    border: 0.1rem solid rgba(0, 0, 0, 0.14);
+    margin: 1rem;
+    border-radius: 0.5rem;
 }
 
 /*

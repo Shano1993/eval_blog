@@ -65,9 +65,9 @@ class UserController extends AbstractController
                 if (!UserManager::mailUserExist($user->getEmail())) {
                     UserManager::addUser($user);
                     if (null !== $user->getId()) {
-                        $_SESSION['success'] = "Inscription réussie, votre compte est actif";
                         $user->setPassword('');
                         $_SESSION['user'] = $user;
+                        header('location: /index.php?c=home');
                     } else {
                         $_SESSION['errors'] = "Impossible de vous enregistrer";
                     }
@@ -89,6 +89,7 @@ class UserController extends AbstractController
         if (UserManager::userExist($id)) {
             $user = UserManager::getUser($id);
             $deleted = UserManager::deleteUser($user);
+            $_SESSION['success'] = "Utilisateur supprimé.";
         }
         $this->index();
     }
@@ -101,6 +102,7 @@ class UserController extends AbstractController
             $_SESSION['success'] = null;
             session_destroy();
         }
+        $_SESSION['success'] = 'Déconnexion réussie !';
         $this->render('home/index');
     }
 
@@ -119,7 +121,9 @@ class UserController extends AbstractController
                 if (password_verify($password, $user->getPassword())) {
                     $user->setPassword('');
                     $_SESSION['user'] = $user;
+                    $_SESSION['success'] = "Connexion réussie avec succès !";
                     $this->redirectIfConnected();
+
                 }
                 else {
                     $_SESSION['errors'][] = $errorMessage;
@@ -135,4 +139,6 @@ class UserController extends AbstractController
     {
         $this->render('user/profil');
     }
+
+
 }

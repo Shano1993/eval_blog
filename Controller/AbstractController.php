@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\Entity\Role;
+use App\Model\Entity\User;
 use App\Model\Manager\RoleManager;
 use App\Model\Manager\UserManager;
 
@@ -48,6 +50,15 @@ abstract class AbstractController
 
     public static function adminConnected(): bool
     {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            foreach ($user->getRoles() as $role) {
+                $current = $role->getRoleName();
+                if ($current === 'admin') {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -67,7 +78,7 @@ abstract class AbstractController
     public function redirectIfNotConnected(): void
     {
         if (!self::userConnected()) {
-            $this->render('home/index');
+            header('location: /index.php?c=home');
         }
     }
 

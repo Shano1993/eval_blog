@@ -3,10 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Entity\Article;
-use App\Model\Entity\Comment;
 use App\Model\Manager\ArticleManager;
-use App\Model\Manager\CommentManager;
-use MongoDB\BSON\Timestamp;
 
 class ArticleController extends AbstractController
 {
@@ -49,15 +46,6 @@ class ArticleController extends AbstractController
         if (ArticleManager::articleExist($id)) {
             $article = ArticleManager::getArticle($id);
             $deleted = ArticleManager::deleteArticle($article);
-        }
-        $this->index();
-    }
-
-    public function editArticle(int $id)
-    {
-        if (ArticleManager::articleExist($id)) {
-            $article = ArticleManager::getArticle($id);
-            $edit = ArticleManager::editArticle($article);
         }
         $this->index();
     }
