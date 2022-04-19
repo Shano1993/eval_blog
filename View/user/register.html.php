@@ -2,7 +2,7 @@
 
     <form name="form" action="/index.php?c=user&a=register" method="post" class="formRegister">
         <div class="input-container">
-            <input type="text" name="firstname" id="firstname" placeholder="Votre prénom">
+            <input type="text" name="firstname" id="firstname" placeholder="Votre prénom" required>
         </div>
 
         <div class="input-container">
